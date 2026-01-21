@@ -10,6 +10,7 @@ import { useState } from "react";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 
 
@@ -90,9 +91,9 @@ export default function Register() {
         setIsLoadingFlag(false)
         navigate("/login")
         toast.success("Register Successfully", {
-                  position: "top-center",
-                  
-                })
+          position: "top-center",
+
+        })
       }
 
     }).catch((err) => {
@@ -105,6 +106,9 @@ export default function Register() {
 
   return (
     <>
+      <Helmet>
+        <title>Register - ConnecSo</title>
+      </Helmet>
       <main className='container w-[80%] space-y-5 '>
         <h1 className='text-4xl font-bold'> Welcome To App - Connect Now !</h1>
         <p className='text-lg font-medium text-primary-500'>Sign Up to join our Community </p>

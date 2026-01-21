@@ -63,7 +63,7 @@ export default function Navbar() {
                 <NavbarBrand >
                     <Link to={"/"} className="flex flex-row items-center  gap-1" >
                         <img src={logo} alt="imgLogo" className="w-11" />
-                        <p className="font-bold text-inherit text-xl ">Hambozo App </p>
+                        <p className="font-bold text-inherit text-xl ">ConnecSo</p>
                     </Link>
                 </NavbarBrand>
                 <NavbarBrand className="hidden md:flex">

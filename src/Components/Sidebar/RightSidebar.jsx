@@ -103,14 +103,14 @@ const RightSidebar = () => {
                         <a
                             key={link.id}
                             href={link.url || "#"}
-                            className="text-xs dark:text-white  text-gray-500 hover:text-gray-700 hover:underline"
+                            className="text-xs dark:text-white  text-gray-500 hover:text-gray-700 hover:underline dark:hover:text-white"
                         >
                             {link.name}
                         </a>
                     ))}
                 </div>
 
-                <p className="text-xs dark:text-white text-gray-500">Hambozo © 2026</p>
+                <p className="text-xs dark:text-white text-gray-500">ConnecSo © 2026</p>
             </div>
         </div>
     );

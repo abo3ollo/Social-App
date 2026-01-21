@@ -6,16 +6,17 @@ import { useForm } from "react-hook-form"
 import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from "axios"
-import {  useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import { UserContext } from "../../../Context/UserContext";
+import { Helmet } from "react-helmet";
 
 
 
 
 export default function Login() {
-   let {userLogin,setUserLogin} =useContext(UserContext)
+  let { userLogin, setUserLogin } = useContext(UserContext)
 
 
   let [showPassword, setShowPassword] = useState(false)
@@ -61,14 +62,14 @@ export default function Login() {
       if (res.data.message == "success") {
 
         console.log(res.data.token);
-        localStorage.setItem("userToken",res.data.token)
+        localStorage.setItem("userToken", res.data.token)
         setUserLogin(res.data.token)
-        
+
         setIsLoadingFlag(false)
         navigate("/")
         toast.success("Logged In Successfully", {
           position: "top-center",
-          
+
         })
       }
 
@@ -82,6 +83,9 @@ export default function Login() {
 
   return (
     <>
+      <Helmet>
+        <title>Login - ConnecSo</title>
+      </Helmet>
       <main className='container w-[80%] space-y-5 '>
         <h1 className='text-4xl font-bold'> Welcome Back To App !</h1>
         <p className='text-lg font-medium text-primary-500'>Sign Up to join our Community </p>

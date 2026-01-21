@@ -1,17 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import React from 'react'
 import UserPosts from '../../Components/UserPosts/UserPosts'
 import UploadUserPhoto from '../../Components/UploadUserPhoto/UploadUserPhoto'
 import { RiMvAiLine } from 'react-icons/ri'
 import { BiCalendar, BiEdit, BiLock, BiUser, BiUserCircle } from 'react-icons/bi'
-import { BsEye } from 'react-icons/bs'
 import { Divider, useDisclosure } from '@heroui/react'
-import { useForm } from 'react-hook-form'
-import z from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from 'react-toastify'
 import UpdatePassword from '../../Components/UpdatePassword/UpdatePassword'
+import { Helmet } from 'react-helmet'
 
 export default function Profile() {
 
@@ -43,6 +38,10 @@ export default function Profile() {
 
   return (
     <>
+      <Helmet>
+        <title>Profile - ConnecSo</title>
+      </Helmet>
+
       <div className=" bg-linear-to-br from-blue-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 p-8 mb-0">
         <div className="max-w-4xl mx-auto">
           {/* Profile Header Card */}
