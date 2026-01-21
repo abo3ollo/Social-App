@@ -6,9 +6,9 @@ import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 
 
-export default function UploadUserPhoto() {
+export default function UploadUserPhoto({isOpen, onOpenChange}) {
 
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    
 
     let queryClient = useQueryClient()
 
@@ -47,9 +47,7 @@ export default function UploadUserPhoto() {
     }
     return (
         <>
-            <Button className="bg-black text-white p-5" onPress={onOpen}>
-                Upload Photo
-            </Button>
+            
             <Modal isOpen={isOpen} placement="top-center" onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (

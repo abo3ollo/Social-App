@@ -4,9 +4,9 @@ import React from 'react'
 import UserPosts from '../../Components/UserPosts/UserPosts'
 import UploadUserPhoto from '../../Components/UploadUserPhoto/UploadUserPhoto'
 import { RiMvAiLine } from 'react-icons/ri'
-import { BiCalendar, BiLock, BiUser, BiUserCircle } from 'react-icons/bi'
+import { BiCalendar, BiEdit, BiLock, BiUser, BiUserCircle } from 'react-icons/bi'
 import { BsEye } from 'react-icons/bs'
-import { Divider } from '@heroui/react'
+import { Divider, useDisclosure } from '@heroui/react'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -15,8 +15,10 @@ import UpdatePassword from '../../Components/UpdatePassword/UpdatePassword'
 
 export default function Profile() {
 
-  // schema
-  
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+
+
 
 
   function getUserInfo() {
@@ -41,25 +43,23 @@ export default function Profile() {
 
   return (
     <>
-      {/* <div className='bg-violet-600 italic p-2 lg:w-full   mx-auto space-y-2 text-white rounded-3xl text-center'>
-        <img src={data?.photo} className='size-12.5 rounded-full mx-auto' alt="" />
-        <p className='text-2xl mb-3  '>Name: {data?.name}</p>
-        <p className='text-2xl mb-3 '>Email: {data?.email}</p>
-        <p className='text-2xl mb-3 '>Gender: {data?.gender}</p>
-        <p className='text-2xl mb-3 '>Date Of Birth: {data?.dateOfBirth}</p>
-
-        <UploadUserPhoto/>
-
-
-      </div> */}
       <div className=" bg-linear-to-br from-blue-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 p-8 mb-0">
         <div className="max-w-4xl mx-auto">
           {/* Profile Header Card */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-6 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-24 bg-linear-to-r from-blue-500 to-pink-500"></div>
             <div className="relative flex items-center gap-4 mt-8">
-              <div className="w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white">
-                <img src={data?.photo} className='rounded-full w-full ' alt="" />
+              <div onClick={onOpen} className="relative w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white group cursor-pointer overflow-hidden">
+                <img
+                  src={data?.photo}
+                  className='rounded-full w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:opacity-60'
+                  alt="Profile"
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-2">
+                    <BiEdit className="w-6 h-6 text-white" />
+                  </div>
+                </div>
               </div>
               <div className='flex justify-between  items-center  w-[80%] mt-12'>
                 <div className="flex-1 ">
@@ -135,11 +135,12 @@ export default function Profile() {
             </div>
 
             {/* Change Password Card */}
-            <UpdatePassword/>            
+            <UpdatePassword />
           </div>
         </div>
       </div>
       <UserPosts userId={data?._id} />
+      <UploadUserPhoto isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   )
 }
