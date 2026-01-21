@@ -4,7 +4,7 @@ import { BiImage } from 'react-icons/bi'
 
 import React from 'react'
 import AllComments from '../../Components/AllComments/AllComments'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { MdOutlineEmojiEmotions } from 'react-icons/md'
 import { useForm } from "react-hook-form"
@@ -14,7 +14,7 @@ import { toast } from 'react-toastify'
 
 export default function CreateCommentsModal({ isOpen, onOpenChange, postId }) {
     // console.log(postId);
-
+    let queryClient = useQueryClient()
 
     let { register, handleSubmit } = useForm({
         defaultValues: {
@@ -35,6 +35,12 @@ export default function CreateCommentsModal({ isOpen, onOpenChange, postId }) {
                 onClose();
                 toast.success("Comment added Successfully", {
                     position: "top-center",
+                })
+                queryClient.invalidateQueries({
+                    queryKey:["getUserPosts"]
+                })
+                queryClient.invalidateQueries({
+                    queryKey:["getPosts"]
                 })
             }
 

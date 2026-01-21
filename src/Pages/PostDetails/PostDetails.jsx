@@ -80,7 +80,7 @@ export default function PostDetails({ isOpen, onOpenChange }) {
     return (
 
         <div>
-            <h2>Details bta3t el post</h2>
+            {/* <h2>Details bta3t el post</h2> */}
             <div className="bg-white rounded-lg shadow-md max-w-2xl mx-auto mb-4 dark:text-white dark:bg-black">
                 <div className="flex items-center justify-between p-4">
                     <div className="flex items-center gap-3">

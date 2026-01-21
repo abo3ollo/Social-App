@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { button, Button, Checkbox, Divider, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@heroui/react'
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 
 
@@ -9,6 +10,7 @@ export default function UploadUserPhoto() {
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+    let queryClient = useQueryClient()
 
     let { register, handleSubmit } = useForm({
         defaultValues: {
@@ -31,6 +33,9 @@ export default function UploadUserPhoto() {
 
                 onClose();
                 toast.success("Photo Updated")
+                queryClient.invalidateQueries({
+                    queryKey:["UserInfo"]
+                })
                 console.log(res);
             }
 
@@ -62,7 +67,6 @@ export default function UploadUserPhoto() {
                                         type="file"
                                     />
                                 </form>
-
 
                             </ModalBody>
                             <ModalFooter>

@@ -1,12 +1,9 @@
-import React, { useContext, useEffect } from 'react'
-import Sidebar from '../../Components/Sidebar/Sidebar'
-import { PostContext } from '../../Context/PostContext'
+
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import PostCard from '../../Components/PostsCard/PostCard'
 import Loading from '../../Components/loading/Loading'
-import PostComment from '../PostDetails/PostDetails'
-import PostDetails from '../PostDetails/PostDetails'
+
 import CreatePost from '../../Components/CreatePost/CreatePost'
 
 export default function Home() {
@@ -22,9 +19,12 @@ export default function Home() {
 
   let { data, isError, error, isLoading } = useQuery({
     queryKey: ["getPosts"],
-    queryFn: getAllPosts
+    queryFn: getAllPosts, 
+    select: (data)=>{
+      return data.data.posts
+    }
   })
-  console.log(data?.data?.posts);
+  console.log(data);
 
   if (isLoading) {
     return (
@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <>
       <CreatePost/>
-      {data?.data?.posts.map((post, index) => {
+      {data?.map((post, index) => {
         return <PostCard key={index} post={post} />
       })}
     </>

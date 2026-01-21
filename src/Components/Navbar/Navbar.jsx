@@ -107,7 +107,6 @@ export default function Navbar() {
                                 isBordered
                                 as="button"
                                 className="transition-transform"
-                                color="secondary"
                                 name={data?.name}
                                 size="sm"
                                 src={data?.photo}
