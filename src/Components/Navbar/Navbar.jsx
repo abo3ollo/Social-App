@@ -12,6 +12,7 @@ import {
     DropdownMenu,
     Avatar,
     Badge,
+    Button,
 } from "@heroui/react";
 
 import { FiSearch } from "react-icons/fi";
@@ -23,6 +24,8 @@ import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import DarkMode from "../DarkModeToggle/DarkModeToggle";
+import { IoMdMenu } from "react-icons/io";
+
 
 
 export default function Navbar() {
@@ -67,7 +70,6 @@ export default function Navbar() {
                     </Link>
                 </NavbarBrand>
                 <NavbarBrand className="hidden md:flex">
-
                     <Input
                         classNames={{
                             base: "max-w-full  h-10",
@@ -85,22 +87,53 @@ export default function Navbar() {
 
                 </NavbarBrand>
 
-                <NavbarContent  justify="end">
-                    <DarkMode />
-                    <NavbarBrand className="rounded-full cursor-pointer bg-gray-200 p-2 grow-0  dark:text-white dark:bg-black">
 
-                        <Badge color="danger" content="5">
-                            <IoIosNotifications className="text-2xl" />
-                        </Badge>
+                <NavbarContent justify="end">
+                    <Dropdown placement="bottom-end">
+                        <NavbarItem>
+                            <DropdownTrigger>
 
-                    </NavbarBrand>
-                    <NavbarBrand className="rounded-full cursor-pointer bg-gray-200 p-2 grow-0 dark:text-white dark:bg-black ">
+                                <NavbarBrand className="rounded-full cursor-pointer bg-gray-200 p-2 grow-0  dark:text-white dark:bg-black">
+                                    <IoMdMenu className="text-2xl" />
+                                </NavbarBrand>
 
-                        <Badge color="danger" content="5">
-                            <LuMessageCircleMore className="text-2xl" />
-                        </Badge>
+                            </DropdownTrigger>
+                        </NavbarItem>
+                        <DropdownMenu className="w-full min-w-0  ">
+                            <DropdownItem key="theme"
+                                className="font-extrabold"
+                                description="Theme"
+                                startContent={<DarkMode />}>
 
-                    </NavbarBrand>
+                            </DropdownItem>
+                            <DropdownItem key="notifications"
+                                className="font-extrabold"
+                                description="Notifications"
+                                startContent={<NavbarBrand className="rounded-full cursor-pointer bg-gray-200 p-2 grow-0  dark:text-white dark:bg-black">
+
+                                    <Badge color="danger" content="5">
+                                        <IoIosNotifications className="text-2xl" />
+                                    </Badge>
+
+                                </NavbarBrand>}>
+
+                            </DropdownItem>
+                            <DropdownItem key="messages"
+                                className="font-extrabold"
+                                description="Messages"
+                                startContent={<NavbarBrand className="rounded-full cursor-pointer bg-gray-200 p-2 grow-0 dark:text-white dark:bg-black ">
+
+                                    <Badge color="danger" content="5">
+                                        <LuMessageCircleMore className="text-2xl" />
+                                    </Badge>
+
+                                </NavbarBrand>}>
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+
+
+
                     {userLogin !== null ? <Dropdown placement="bottom-end">
                         <DropdownTrigger className="cursor-pointer">
                             <Avatar
