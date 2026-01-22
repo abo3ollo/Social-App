@@ -12,6 +12,7 @@ import {
     Divider,
     Textarea,
     image,
+    Badge,
 } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -21,8 +22,8 @@ import { IoMdPhotos } from "react-icons/io";
 import { toast } from "react-toastify";
 
 
-export default function CreatePostModal({ isOpen, onOpenChange ,onClose }) {
-   
+export default function CreatePostModal({ isOpen, onOpenChange, onClose }) {
+
     function getUserInfo() {
         return axios.get("https://linked-posts.routemisr.com/users/profile-data", {
             headers: {
@@ -43,25 +44,25 @@ export default function CreatePostModal({ isOpen, onOpenChange ,onClose }) {
 
 
     let form = useForm({
-        defaultValues:{
+        defaultValues: {
             body: "",
             image: "",
 
         }
     })
 
-    let {register , handleSubmit} = form
+    let { register, handleSubmit } = form
 
-    function createPost(values){
+    function createPost(values) {
         console.log(values); // values hna by3ml log ll body bs mesh rady read image 
-        
+
         console.log(values.body);
         console.log(selectedImage);
 
 
-        let formData =new FormData()
-        formData.append("body" ,values.body)
-        formData.append("image" ,selectedImage)
+        let formData = new FormData()
+        formData.append("body", values.body)
+        formData.append("image", selectedImage)
 
         axios.post('https://linked-posts.routemisr.com/posts', formData, {
             headers: {
@@ -71,11 +72,11 @@ export default function CreatePostModal({ isOpen, onOpenChange ,onClose }) {
             if (res.data.message === "success") {
                 form.reset()
                 toast.success("Post created successfully!");
-                 // Clear form
+                // Clear form
                 setSelectedImage(null); // Clear selected image
                 onClose();
                 // Close modal
-                
+
                 console.log(res);
             }
         }).catch((err) => {
@@ -83,18 +84,18 @@ export default function CreatePostModal({ isOpen, onOpenChange ,onClose }) {
             console.log(err?.response);
         })
 
-        
-    }    
+
+    }
 
     const fileInput = useRef()
     // const userTextArea = useRef()
-    const [selectedImage , setSelectedImage] = useState("")
+    const [selectedImage, setSelectedImage] = useState("")
 
-    function openFileInput(){
+    function openFileInput() {
         fileInput.current.click()
     }
-    function chooseFile(){
-        const file  = fileInput.current.files[0]
+    function chooseFile() {
+        const file = fileInput.current.files[0]
         console.log(file);
         setSelectedImage(file)
 
@@ -103,43 +104,38 @@ export default function CreatePostModal({ isOpen, onOpenChange ,onClose }) {
 
     return (
         <>
-            <Modal isOpen={isOpen} placement="top-center"  onClose={()=>{setSelectedImage("")}} onOpenChange={onOpenChange}>
+            <Modal isOpen={isOpen} placement="top-center" onClose={() => { setSelectedImage("") }} onOpenChange={onOpenChange}>
                 <ModalContent className="max-w-2xl">
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1 font-extrabold text-center">
-                                Create Post
+                            <ModalHeader className="flex flex-col gap-1 font-bold text-center ">
+                                New Post
                             </ModalHeader>
                             <Divider />
                             <ModalBody className="p-3">
                                 <div className="flex items-center gap-2">
                                     <div>
-                                        <img
-                                            src={data?.photo}
-                                            className="w-12.5 rounded-full"
-                                            alt=""
-                                        />
+                                        <Badge color="success" content="" placement="bottom-right" shape="circle">
+                                            <img src={data?.photo} className="w-12.5 rounded-full" alt="profile" />
+                                        </Badge>
                                     </div>
-                                    <div className="flex  flex-col ">
-                                        <span className="font-bold">{data?.name}</span>
-                                        <span>active</span>
-                                    </div>
+                                    <span className="font-bold">{data?.name}</span>
                                 </div>
-                                <Textarea {...register("body")} minRows={selectedImage? "": "8"}  placeholder="what's on your mind ?" />
-                                {selectedImage && <img  src={URL.createObjectURL(selectedImage)} className="h-112.5 object-contain" alt="" />}
+                                <Textarea {...register("body")} minRows={selectedImage ? "" : "8"} placeholder="what's on your mind ?" />
+                                {selectedImage && <img src={URL.createObjectURL(selectedImage)} className="h-112.5 object-contain" alt="post image" />}
                                 <Divider />
                                 <div className="flex  items-center p-3">
                                     <span className="mx-1">Add to your post:</span>
-                                    <IoMdPhotos  onClick={openFileInput} className="text-green-600 text-2xl cursor-pointer" />
-                                    <input className="cursor-pointer text-green-500" onChange={chooseFile} ref={fileInput} hidden type="file"  />
-                                    
+                                    <IoMdPhotos onClick={openFileInput} className="text-green-600 text-2xl cursor-pointer" />
+                                    <input className="cursor-pointer text-green-500" onChange={chooseFile} ref={fileInput} hidden type="file" />
+
                                 </div>
                                 <Divider />
-                                <Button  color="primary" className="m-3" type="submit" onPress={handleSubmit(createPost)} >
-                                    Create
+                                <Button color="primary" className="m-3" type="submit" onPress={handleSubmit(createPost)} >
+                                    Post
                                 </Button>
                             </ModalBody>
-                            
+
                         </>
                     )}
                 </ModalContent>

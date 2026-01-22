@@ -1,4 +1,4 @@
-import { Card, Divider, Input, useDisclosure } from "@heroui/react";
+import { Badge, Card, Divider, Input, useDisclosure } from "@heroui/react";
 import { BsCameraVideoFill } from "react-icons/bs";
 import { MdEmojiEmotions } from "react-icons/md";
 import { PiVideoFill } from "react-icons/pi";
@@ -32,7 +32,10 @@ export default function CreatePost() {
             <Card>
                 <div className=" flex items-center gap-2 p-4 ">
                     <div>
-                        <img src={data?.photo} className="w-12.5 rounded-full" alt="" />
+                        <Badge color="success" content="" placement="bottom-right" shape="circle">
+
+                            <img src={data?.photo} className="w-12.5 rounded-full" alt="" />
+                        </Badge>
                     </div>
                     <Input
                         onClick={onOpen}
@@ -45,7 +48,7 @@ export default function CreatePost() {
                 <div className="flex items-center justify-evenly p-5  ">
                     <div className="flex items-center cursor-pointer ">
                         <BsCameraVideoFill className=" text-orange-400 text-3xl mx-1.5" />
-                        <p className=" font-medium text-sm">Go Live</p>
+                        <p className=" font-medium text-sm">Live</p>
                     </div>
                     <div className="flex items-center cursor-pointer ">
                         <HiPhoto className=" text-green-800 text-3xl mx-1.5" />

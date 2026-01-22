@@ -48,7 +48,7 @@ export default function Profile() {
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-6 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-24 bg-linear-to-r from-blue-500 to-pink-500"></div>
             <div className="relative flex items-center gap-4 mt-8">
-              <div onClick={onOpen} className="relative w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white group cursor-pointer overflow-hidden">
+              <div onClick={onOpen} className=" relative w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold ring-4 ring-white group cursor-pointer overflow-hidden">
                 <img
                   src={data?.photo}
                   className='rounded-full w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:opacity-60'
@@ -68,7 +68,7 @@ export default function Profile() {
                     <span className="text-sm dark:text-gray-500">{data?.email}</span>
                   </div>
                 </div>
-                <span className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+                <span className= " hidden bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-medium md:flex items-center gap-2">
                   <BiUser className="w-4 h-4" />
                   {data?.gender}
                 </span>
