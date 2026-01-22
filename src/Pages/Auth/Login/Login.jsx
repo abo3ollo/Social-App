@@ -87,8 +87,8 @@ export default function Login() {
         <title>Login - ConnecSo</title>
       </Helmet>
       <main className='container w-[80%] space-y-5 '>
-        <h1 className='text-4xl font-bold'> Welcome Back To App !</h1>
-        <p className='text-lg font-medium text-primary-500'>Sign Up to join our Community </p>
+        <h1 className='text-4xl font-bold'> Welcome Back To ConnecSo !</h1>
+        <p className='text-lg font-medium text-primary-500'>Login to join our Community </p>
 
         <h2 className="text-center text-red-500">{userError}</h2>
 
@@ -105,9 +105,9 @@ export default function Login() {
 
 
 
-          <div className="flex justify-between items-center">
-            <Button isLoading={isLoadingFlag} type='submit' color="primary">Login</Button>
-            <p>Don't have an account? <Link to={"/register"} className='font-bold text-primary-500'>
+          <div className="flex justify-between items-center  ">
+            <Button isLoading={isLoadingFlag} className="mx-2" type='submit' color="primary">Login</Button>
+            <p > Don't have an account? <Link to={"/register"} className='font-bold text-primary-500'>
               Sign up
             </Link>
             </p>
